@@ -1,8 +1,26 @@
 import './globals.css';
 import type { Metadata } from 'next';
+import { Merriweather, Roboto } from 'next/font/google';
+import { ThemeProvider } from './components/ThemeProvider';
+import Header from './components/Header';
+import Footer from './components/Footer';
+
+const merriweather = Merriweather({
+    subsets: ['latin'],
+    weight: ['400', '700'],
+    variable: '--font-serif',
+    display: 'swap',
+});
+
+const roboto = Roboto({
+    subsets: ['latin'],
+    weight: ['400', '700'],
+    variable: '--font-sans',
+    display: 'swap',
+});
 
 export const metadata: Metadata = {
-    title: 'Modern Blog',
+    title: 'Toprak Yavuz',
     description: 'Göz yormayan, modern statik blog.',
 };
 
@@ -12,21 +30,15 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="tr">
+        <html lang="tr" className={`${merriweather.variable} ${roboto.variable}`}>
             <body>
-                <div className="container">
-                    <header>
-                        <nav>
-                            <a href="/" style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--foreground)' }}>
-                                Modern Blog
-                            </a>
-                        </nav>
-                    </header>
-                    <main>{children}</main>
-                    <footer>
-                        <p>&copy; {new Date().getFullYear()} Modern Blog. Tüm hakları saklıdır.</p>
-                    </footer>
-                </div>
+                <ThemeProvider>
+                    <div className="container">
+                        <Header />
+                        <main>{children}</main>
+                        <Footer />
+                    </div>
+                </ThemeProvider>
             </body>
         </html>
     );

@@ -1,37 +1,42 @@
 :root {
-    /* Renk Paleti - Göz Yormayan Modern */
-    --background: #faf7f5;
-    /* Yumuşak krem */
-    --foreground: #2d3748;
-    /* Koyu gri */
-    --primary: #319795;
-    /* Teal */
-    --secondary: #ecc94b;
-    /* Soft Gold */
-    --accent: #ed8936;
-    /* Soft Orange */
-    --muted: #718096;
-    /* Muted Gray */
-    --border: #e2e8f0;
+    /* Renk Paleti - ColorHunt: https://colorhunt.co/palette/3a3845f7ccacc69b7b826f66 */
+
+    /* Light Mode */
+    --background: #F9F7F2;
+    /* Çok Açık Krem (Göz yormayan beyaz) */
+    --foreground: #3A3845;
+    /* Koyu Morumsu Gri */
+    --primary: #826F66;
+    /* Kahvemsi Gri (Vurgu) */
+    --secondary: #C69B7B;
+    /* Koyu Şeftali */
+    --muted: #826F66;
+    /* Yumuşatılmış Kahve */
+    --border: #e0b595;
+    /* Arka planla uyumlu border */
 
     /* Fontlar */
-    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    --font-serif: Georgia, Cambria, 'Times New Roman', Times, serif;
+    --font-sans: var(--font-sans), system-ui, sans-serif;
+    --font-serif: var(--font-serif), serif;
 
     /* Spacing */
-    --spacing-unit: 8px;
     --container-width: 800px;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background: #1a202c;
-        --foreground: #e2e8f0;
-        --primary: #4fd1c5;
-        --secondary: #d69e2e;
-        --muted: #a0aec0;
-        --border: #2d3748;
-    }
+/* Dark Mode */
+.dark {
+    --background: #3A3845;
+    /* Koyu Morumsu Gri */
+    --foreground: #F7CCAC;
+    /* Açık Şeftali/Krem */
+    --primary: #C69B7B;
+    /* Koyu Şeftali */
+    --secondary: #F7CCAC;
+    /* Açık Şeftali (Hover için) */
+    --muted: #C69B7B;
+    /* Koyu Şeftali */
+    --border: #524f61;
+    /* Koyu Gri */
 }
 
 * {
@@ -48,10 +53,23 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
 a {
     color: var(--primary);
     text-decoration: none;
-    transition: color 0.2s;
+    transition: all 0.2s ease;
+    font-weight: 600;
 }
 
 a:hover {
@@ -62,57 +80,63 @@ a:hover {
     max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
     padding: 40px 0;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 40px;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 60px;
+}
+
+main {
+    flex: 1;
 }
 
 footer {
-    margin-top: 60px;
+    margin-top: 80px;
     padding: 40px 0;
-    border-top: 1px solid var(--border);
+    border-top: 2px solid var(--border);
     text-align: center;
     color: var(--muted);
     font-size: 0.9rem;
 }
 
-h1,
-h2,
-h3 {
-    line-height: 1.2;
-    margin-bottom: 1rem;
-}
-
 h1 {
     font-size: 2.5rem;
-    font-weight: 800;
     letter-spacing: -0.02em;
 }
 
 h2 {
     font-size: 1.8rem;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
 }
 
+/* Blog Yazısı Stilleri */
 article {
     max-width: 100%;
 }
 
 article h1 {
     margin-bottom: 0.5rem;
+    color: var(--foreground);
 }
 
 article .date {
     color: var(--muted);
     margin-bottom: 2rem;
     display: block;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
 }
 
 article p {
     margin-bottom: 1.5rem;
+    font-size: 1.1rem;
 }
 
 article ul,
@@ -126,19 +150,25 @@ article li {
 }
 
 article pre {
-    background-color: #2d3748;
-    color: #f7fafc;
-    padding: 1rem;
+    background-color: #3A3845;
+    color: #F7CCAC;
+    padding: 1.5rem;
     border-radius: 8px;
     overflow-x: auto;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
 }
 
 article code {
     font-family: 'Courier New', Courier, monospace;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(130, 111, 102, 0.2);
     padding: 0.2rem 0.4rem;
     border-radius: 4px;
+}
+
+.dark article code {
+    background-color: rgba(198, 155, 123, 0.2);
 }
 
 article pre code {
@@ -148,8 +178,60 @@ article pre code {
 
 article blockquote {
     border-left: 4px solid var(--primary);
-    padding-left: 1rem;
+    padding-left: 1.5rem;
     font-style: italic;
     color: var(--muted);
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    background-color: rgba(130, 111, 102, 0.1);
+    padding: 1rem 1rem 1rem 1.5rem;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Buton ve Etkileşim Stilleri */
+button,
+.btn {
+    font-family: var(--font-sans);
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    border: 1px solid var(--primary);
+    /* İnce şerit */
+}
+
+button:hover,
+.btn:hover {
+    transform: scale(1.05);
+}
+
+button:active,
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* Header Linkleri için Buton Görünümü */
+.nav-link {
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    color: var(--foreground) !important;
+    border: 1px solid var(--primary);
+    /* İnce şerit */
+}
+
+.nav-link:hover {
+    background-color: var(--primary);
+    color: var(--background) !important;
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+/* Footer Sosyal Medya İkonları */
+.social-link {
+    transition: transform 0.2s ease, color 0.2s ease;
+    border: none !important;
+    /* Çerçeve olmasın */
+}
+
+.social-link:hover {
+    transform: scale(1.2);
+    /* Biraz daha belirgin büyüme */
+    color: var(--secondary);
 }

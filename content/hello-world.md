@@ -1,6 +1,7 @@
 ---
 title: 'Merhaba Dünya'
 date: '2025-11-30'
+tags: ['Genel', 'Next.js']
 ---
 
 Bu, **Next.js** ve **Cloudflare Pages** kullanılarak oluşturulmuş statik blogun ilk yazısıdır.

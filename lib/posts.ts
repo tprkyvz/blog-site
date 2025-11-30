@@ -3,15 +3,15 @@ import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
+import { PostData } from './types';
 
 const postsDirectory = path.join(process.cwd(), 'content');
 
-export interface PostData {
-    id: string;
-    date: string;
-    title: string;
-    contentHtml?: string;
-    [key: string]: any;
+function calculateReadingTime(content: string): string {
+    const wordsPerMinute = 200;
+    const words = content.trim().split(/\s+/).length;
+    const minutes = Math.ceil(words / wordsPerMinute);
+    return `~ ${minutes} min read`;
 }
 
 export function getSortedPostsData(): PostData[] {
@@ -28,8 +28,13 @@ export function getSortedPostsData(): PostData[] {
         const fileContents = fs.readFileSync(fullPath, 'utf8');
         const matterResult = matter(fileContents);
 
+        const readingTime = calculateReadingTime(matterResult.content);
+        const tags = matterResult.data.tags || [];
+
         return {
             id,
+            readingTime,
+            tags,
             ...(matterResult.data as { date: string; title: string }),
         };
     });
@@ -66,10 +71,14 @@ export async function getPostData(id: string): Promise<PostData> {
         .use(html)
         .process(matterResult.content);
     const contentHtml = processedContent.toString();
+    const readingTime = calculateReadingTime(matterResult.content);
+    const tags = matterResult.data.tags || [];
 
     return {
         id,
         contentHtml,
+        readingTime,
+        tags,
         ...(matterResult.data as { date: string; title: string }),
     };
 }
