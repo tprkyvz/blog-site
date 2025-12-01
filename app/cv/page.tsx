@@ -26,9 +26,9 @@ export default function CV() {
                 </a>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '40px' }}>
+            <div className="cv-grid">
                 {/* Sol Kolon: İletişim & Yetenekler */}
-                <aside>
+                <aside className="cv-sidebar">
                     <section style={{ marginBottom: '40px' }}>
                         <h3>İletişim</h3>
                         <ul style={{ listStyle: 'none', padding: 0 }}>
@@ -55,7 +55,7 @@ export default function CV() {
                 </aside>
 
                 {/* Sağ Kolon: Deneyim & Eğitim */}
-                <main>
+                <main className="cv-main">
                     <section style={{ marginBottom: '40px' }}>
                         <h2 style={{ marginTop: 0, borderBottom: '2px solid var(--border)', paddingBottom: '10px' }}>Deneyim</h2>
 

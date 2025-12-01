@@ -7,17 +7,40 @@ import { useTheme } from './ThemeProvider';
 export default function Header() {
     const { theme, toggleTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     useEffect(() => {
         setMounted(true);
     }, []);
 
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
+    const closeMenu = () => {
+        setIsMenuOpen(false);
+    };
+
+    // Prevent scrolling when menu is open
+    useEffect(() => {
+        if (isMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isMenuOpen]);
+
     return (
-        <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <nav style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                <Link href="/" style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--foreground)', marginRight: '20px' }}>
-                    Toprak Yavuz
-                </Link>
+        <header className="header-container">
+            <Link href="/" style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--foreground)', zIndex: 51 }}>
+                Toprak Yavuz
+            </Link>
+
+            {/* Desktop Navigation */}
+            <nav className="nav-desktop">
                 <Link href="/" className="nav-link">
                     Ana Sayfa
                 </Link>
@@ -28,21 +51,34 @@ export default function Header() {
                     İletişim
                 </Link>
             </nav>
-            <button
-                onClick={toggleTheme}
-                style={{
-                    background: 'none',
-                    border: '1px solid var(--border)',
-                    padding: '8px 12px',
-                    borderRadius: '6px',
-                    cursor: 'pointer',
-                    color: 'var(--foreground)',
-                    fontSize: '0.9rem',
-                    minWidth: '100px', // Buton genişliği sabit kalsın
-                }}
-            >
-                {mounted ? (theme === 'light' ? '🌙 Koyu Mod' : '☀️ Açık Mod') : '...'}
-            </button>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <button
+                    onClick={toggleTheme}
+                    className="theme-toggle-btn"
+                    aria-label="Toggle Theme"
+                >
+                    {mounted ? (theme === 'light' ? '🌙' : '☀️') : '...'}
+                </button>
+
+                {/* Mobile Menu Toggle */}
+                <button className="nav-mobile-toggle" onClick={toggleMenu} aria-label="Toggle Menu">
+                    {isMenuOpen ? '✕' : '☰'}
+                </button>
+            </div>
+
+            {/* Mobile Navigation */}
+            <div className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
+                <Link href="/" className="nav-link" onClick={closeMenu}>
+                    Ana Sayfa
+                </Link>
+                <Link href="/cv" className="nav-link" onClick={closeMenu}>
+                    Özgeçmiş
+                </Link>
+                <Link href="/contact" className="nav-link" onClick={closeMenu}>
+                    İletişim
+                </Link>
+            </div>
         </header>
     );
 }

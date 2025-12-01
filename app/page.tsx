@@ -10,7 +10,7 @@ export default function Home() {
             <section style={{ marginBottom: '60px', textAlign: 'center' }}>
                 <h1>Selam ben Toprak</h1>
                 <p style={{ fontSize: '1.2rem', color: 'var(--muted)' }}>
-                    Siber Güvenlik meraklısı.
+                    Bilgisayar Mühendisliği öğrencisi.
                 </p>
             </section>
 

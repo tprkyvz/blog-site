@@ -20,8 +20,8 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-    title: 'Toprak Yavuz',
-    description: 'Göz yormayan, modern statik blog.',
+    title: 'ToprakYavuz',
+    description: '',
 };
 
 export default function RootLayout({
