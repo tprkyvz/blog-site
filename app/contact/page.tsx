@@ -34,13 +34,18 @@ export default function Contact() {
 
                 <section>
                     <h2>Mesaj Gönder</h2>
-                    <form style={{ display: 'grid', gap: '20px', maxWidth: '500px' }}>
+                    <form
+                        action="https://formspree.io/f/xrbnkbpd"
+                        method="POST"
+                        style={{ display: 'grid', gap: '20px', maxWidth: '500px' }}
+                    >
                         <div>
                             <label htmlFor="name" style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold' }}>İsim</label>
                             <input
                                 type="text"
                                 id="name"
                                 name="name"
+                                required
                                 style={{
                                     width: '100%',
                                     padding: '12px',
@@ -58,6 +63,7 @@ export default function Contact() {
                                 type="email"
                                 id="email"
                                 name="email"
+                                required
                                 style={{
                                     width: '100%',
                                     padding: '12px',
@@ -75,6 +81,7 @@ export default function Contact() {
                                 id="message"
                                 name="message"
                                 rows={5}
+                                required
                                 style={{
                                     width: '100%',
                                     padding: '12px',
@@ -87,7 +94,7 @@ export default function Contact() {
                             ></textarea>
                         </div>
                         <button
-                            type="button"
+                            type="submit"
                             style={{
                                 justifySelf: 'start',
                                 backgroundColor: 'var(--primary)',
