@@ -27,16 +27,16 @@
 .dark {
     --background: #3A3845;
     /* Koyu Morumsu Gri */
-    --foreground: #F7CCAC;
-    /* Açık Şeftali/Krem */
+    --foreground: #f0eee9;
+    /* Kırık Beyaz */
     --primary: #C69B7B;
     /* Koyu Şeftali */
     --secondary: #F7CCAC;
     /* Açık Şeftali (Hover için) */
     --muted: #C69B7B;
     /* Koyu Şeftali */
-    --border: #524f61;
-    /* Koyu Gri */
+    --border: #6B6575;
+    /* Belirgin Çizgiler */
 }
 
 * {
