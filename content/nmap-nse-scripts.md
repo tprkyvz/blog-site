@@ -101,4 +101,4 @@ sudo nmap --script-updatedb
 
 NSE, Nmap'i basit bir port tarayıcıdan kapsamlı bir güvenlik denetim aracına dönüştürür. Doğru scriptleri doğru zamanda kullanarak, sızma testlerinizde veya ağ yönetiminizde büyük zaman kazanabilir ve gözden kaçabilecek detayları yakalayabilirsiniz.
 
-Unutmayın; güç sorumluluk getirir. "Intrusive" scriptleri sadece yetkiniz olan sistemlerde kullanın!
+
