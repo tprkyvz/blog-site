@@ -1,18 +1,17 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Merriweather, Roboto } from 'next/font/google';
-import { ThemeProvider } from './components/ThemeProvider';
+import { JetBrains_Mono, Noto_Sans } from 'next/font/google';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-const merriweather = Merriweather({
+const jetbrainsMono = JetBrains_Mono({
     subsets: ['latin'],
     weight: ['400', '700'],
-    variable: '--font-serif',
+    variable: '--font-mono',
     display: 'swap',
 });
 
-const roboto = Roboto({
+const notoSans = Noto_Sans({
     subsets: ['latin'],
     weight: ['400', '700'],
     variable: '--font-sans',
@@ -20,7 +19,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-    title: 'ToprakYavuz',
+    title: "Toprak's blog",
     description: '',
 };
 
@@ -30,15 +29,13 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="tr" className={`${merriweather.variable} ${roboto.variable}`}>
+        <html lang="tr" className={`${jetbrainsMono.variable} ${notoSans.variable}`}>
             <body>
-                <ThemeProvider>
-                    <div className="container">
-                        <Header />
-                        <main>{children}</main>
-                        <Footer />
-                    </div>
-                </ThemeProvider>
+                <div className="container">
+                    <Header />
+                    <main>{children}</main>
+                    <Footer />
+                </div>
             </body>
         </html>
     );

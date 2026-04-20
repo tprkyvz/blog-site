@@ -1,42 +1,10 @@
 :root {
-    /* Renk Paleti - ColorHunt: https://colorhunt.co/palette/3a3845f7ccacc69b7b826f66 */
-
-    /* Light Mode */
-    --background: #F9F7F2;
-    /* Çok Açık Krem (Göz yormayan beyaz) */
-    --foreground: #3A3845;
-    /* Koyu Morumsu Gri */
-    --primary: #826F66;
-    /* Kahvemsi Gri (Vurgu) */
-    --secondary: #C69B7B;
-    /* Koyu Şeftali */
-    --muted: #826F66;
-    /* Yumuşatılmış Kahve */
-    --border: #e0b595;
-    /* Arka planla uyumlu border */
-
-    /* Fontlar */
-    --font-sans: var(--font-sans), system-ui, sans-serif;
-    --font-serif: var(--font-serif), serif;
-
-    /* Spacing */
-    --container-width: 800px;
-}
-
-/* Dark Mode */
-.dark {
-    --background: #3A3845;
-    /* Koyu Morumsu Gri */
-    --foreground: #f0eee9;
-    /* Kırık Beyaz */
-    --primary: #C69B7B;
-    /* Koyu Şeftali */
-    --secondary: #F7CCAC;
-    /* Açık Şeftali (Hover için) */
-    --muted: #C69B7B;
-    /* Koyu Şeftali */
-    --border: #6B6575;
-    /* Belirgin Çizgiler */
+    --background: #110e0e;
+    --foreground: #d9d9d9;
+    --primary: #973f35;
+    --border: #5e2721;
+    --card: #1b1818;
+    --card-hover: #292424;
 }
 
 * {
@@ -48,89 +16,299 @@
 body {
     background-color: var(--background);
     color: var(--foreground);
-    font-family: var(--font-sans);
+    font-family: var(--font-sans), sans-serif;
     line-height: 1.6;
-    transition: background-color 0.3s, color 0.3s;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: var(--font-serif);
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 1rem;
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-mono), monospace;
 }
 
 a {
     color: var(--primary);
     text-decoration: none;
     transition: all 0.2s ease;
-    font-weight: 600;
 }
 
-a:hover {
-    color: var(--secondary);
-}
-
+/* Container */
 .container {
-    max-width: var(--container-width);
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-header {
-    padding: 40px 0;
-    border-bottom: 2px solid var(--border);
-    margin-bottom: 60px;
-}
-
 main {
     flex: 1;
+    padding: 0 1rem;
 }
 
-footer {
-    margin-top: 80px;
-    padding: 40px 0;
-    border-top: 2px solid var(--border);
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.9rem;
+/* Header & Title */
+header {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-h1 {
+.title {
+    display: block;
+    margin: 4rem 2rem 1rem 2rem;
+}
+
+.titleText {
+    font-family: var(--font-mono), monospace;
     font-size: 2.5rem;
-    letter-spacing: -0.02em;
+    color: var(--foreground);
+    text-align: center;
+    margin-bottom: 0.2rem;
 }
 
-h2 {
-    font-size: 1.8rem;
-    margin-top: 2.5rem;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border);
+.titleSubtext {
+    font-family: var(--font-mono), monospace;
+    font-size: 1rem;
+    color: var(--foreground);
+    text-align: center;
+    margin: 0;
 }
 
-/* Blog Yazısı Stilleri */
-article {
+.profileLinks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.linkiconImage {
+    color: var(--foreground);
+    transition: ease-in 0.2s;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.linkicon:hover .linkiconImage {
+    color: var(--primary);
+}
+
+/* Tags / Announcements */
+.announcements-container {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    margin: 0;
+}
+
+.announcement {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tag-button {
+    background-color: transparent;
+    color: var(--foreground);
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: ease-in 0.2s;
+}
+
+.tag-button:hover, .tag-button.active {
+    background-color: var(--card-hover);
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+/* Article Grid */
+.articleFlex {
+    display: grid;
+    grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr);
+    column-gap: 5%;
+    flex-wrap: wrap;
+    flex-flow: column;
+    justify-content: center;
     max-width: 100%;
+    padding: 0 5%;
+    grid-column-start: -1;
+}
+
+.articleTitleAndViews {
+    width: 100%;
+    height: auto;
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.articleA {
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.articleALeft {
+    justify-content: flex-end;
+}
+
+.articleARight {
+    justify-content: flex-start;
+    transform: translateY(50%);
+}
+
+.articleContainer {
+    max-width: 75%;
+    min-height: 12rem;
+    height: auto;
+    width: 75%;
+    margin: 3rem 1rem;
+    background-color: var(--card);
+    transition: ease-in 0.35s;
+    padding: 1rem;
+    cursor: pointer;
+    box-shadow: 0 0 1rem #0a0808;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.articleContainerRight {
+    border-left: var(--border) 2px solid;
+}
+
+.articleContainerLeft {
+    border-right: var(--border) 2px solid;
+}
+
+.articleContainer:hover {
+    background-color: var(--card-hover);
+}
+
+.articleTitle {
+    color: var(--foreground);
+    font-size: 1.2rem;
+    text-decoration: none;
+    display: inline-block;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    padding-right: 5.5rem;
+}
+
+.articleViews {
+    display: inline-flex;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+
+.articleViewsText {
+    color: var(--primary);
+    font-size: 0.8rem;
+    font-family: var(--font-mono), monospace;
+}
+
+.articleHr {
+    max-width: 15rem;
+    text-align: left;
+    margin-left: 0;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--border);
+    height: 1px;
+    border: 0;
+    border-top: 1px solid var(--border);
+}
+
+.articleText {
+    color: var(--foreground);
+    font-size: 0.8rem;
+    font-family: var(--font-mono), monospace;
+}
+
+.articleDate {
+    color: #888;
+    font-size: 0.7rem;
+    margin-top: auto;
+    font-family: var(--font-mono), monospace;
+}
+
+/* Footer Container */
+footer {
+    display: block;
+    text-align: center;
+    background-color: transparent !important;
+    border-top: none !important;
+    margin-top: 5rem;
+}
+
+.footerHr {
+    max-width: 20%;
+    text-align: left;
+    color: var(--border);
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid var(--border);
+    padding: 0;
+    margin: 2rem auto;
+}
+
+@media screen and (max-width: 768px) {
+    .articleFlex {
+        grid-template-columns: 1fr;
+    }
+
+    .articleARight {
+        transform: none;
+        justify-content: center;
+    }
+
+    .articleALeft {
+        justify-content: center;
+    }
+    
+    .articleContainer {
+        max-width: 90%;
+        width: 90%;
+        margin: 1.5rem auto;
+    }
+}
+
+/* Article Page Content Styles */
+article {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
 }
 
 article h1 {
+    font-size: 2.5rem;
     margin-bottom: 0.5rem;
     color: var(--foreground);
 }
 
 article .date {
-    color: var(--muted);
+    color: var(--primary);
     margin-bottom: 2rem;
     display: block;
-    font-family: var(--font-sans);
+    font-family: var(--font-mono), monospace;
     font-size: 0.9rem;
 }
 
@@ -150,8 +328,8 @@ article li {
 }
 
 article pre {
-    background-color: #3A3845;
-    color: #F7CCAC;
+    background-color: var(--card);
+    color: var(--foreground);
     padding: 1.5rem;
     border-radius: 8px;
     overflow-x: auto;
@@ -161,14 +339,10 @@ article pre {
 }
 
 article code {
-    font-family: 'Courier New', Courier, monospace;
-    background-color: rgba(130, 111, 102, 0.2);
+    font-family: var(--font-mono), monospace;
+    background-color: #292424;
     padding: 0.2rem 0.4rem;
     border-radius: 4px;
-}
-
-.dark article code {
-    background-color: rgba(198, 155, 123, 0.2);
 }
 
 article pre code {
@@ -180,170 +354,14 @@ article blockquote {
     border-left: 4px solid var(--primary);
     padding-left: 1.5rem;
     font-style: italic;
-    color: var(--muted);
+    color: #888;
     margin-bottom: 2rem;
-    background-color: rgba(130, 111, 102, 0.1);
+    background-color: var(--card);
     padding: 1rem 1rem 1rem 1.5rem;
     border-radius: 0 8px 8px 0;
 }
 
-/* Buton ve Etkileşim Stilleri */
-button,
-.btn {
-    font-family: var(--font-sans);
-    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
-    border: 1px solid var(--primary);
-    /* İnce şerit */
-}
-
-button:hover,
-.btn:hover {
-    transform: scale(1.05);
-}
-
-button:active,
-.btn:active {
-    transform: scale(0.95);
-}
-
-/* Header Linkleri için Buton Görünümü */
-.nav-link {
-    padding: 8px 16px;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-    color: var(--foreground) !important;
-    border: 1px solid var(--primary);
-    /* İnce şerit */
-}
-
-.nav-link:hover {
-    background-color: var(--primary);
-    color: var(--background) !important;
-    transform: translateY(-2px);
-    text-decoration: none;
-}
-
-/* Footer Sosyal Medya İkonları */
-.social-link {
-    transition: transform 0.2s ease, color 0.2s ease;
-    border: none !important;
-    /* Çerçeve olmasın */
-}
-
-.social-link:hover {
-    /* Biraz daha belirgin büyüme */
-    color: var(--secondary);
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    :root {
-        --container-width: 100%;
-    }
-
-    .container {
-        padding: 0 15px;
-    }
-
-    h1 {
-        font-size: 2rem;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-    }
-
-    header {
-        padding: 20px 0;
-        margin-bottom: 30px;
-    }
-
-    .nav-desktop {
-        display: none !important;
-    }
-
-    .nav-mobile-toggle {
-        display: block !important;
-    }
-}
-
-/* Header Utilities */
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-}
-
-.nav-desktop {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-.nav-mobile-toggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--foreground);
-    cursor: pointer;
-    z-index: 50;
-}
-
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: var(--background);
-    z-index: 40;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    transition: transform 0.3s ease-in-out;
-    transform: translateX(100%);
-}
-
-.mobile-menu.open {
-    transform: translateX(0);
-}
-
-.mobile-menu .nav-link {
-    font-size: 1.5rem;
-    padding: 15px 30px;
-}
-
-.theme-toggle-btn {
-    background: none;
-    border: 1px solid var(--border);
-    padding: 8px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    color: var(--foreground);
-    font-size: 1.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 40px;
-}
-
-@media (min-width: 769px) {
-    .theme-toggle-btn {
-        font-size: 0.9rem;
-        min-width: auto;
-    }
-
-    /* Show text on desktop if desired, or keep icon only. 
-       Let's keep it icon only for consistency or add text back via pseudo-element if needed.
-       For now, the code in Header.tsx uses icon only '🌙' / '☀️' to save space on mobile.
-    */
-}
-
-/* CV Page Styles */
+/* CV Page specific styles from old file */
 .cv-grid {
     display: grid;
     grid-template-columns: 1fr 2fr;
