@@ -1,12 +1,15 @@
-import { getSortedPostsData } from '@/lib/posts';
-import PostList from './components/PostList';
-
 export default function Home() {
-    const allPostsData = getSortedPostsData();
-
     return (
-        <div>
-            <PostList allPostsData={allPostsData} />
+        <div className="hero-container">
+            <div className="hero-card">
+                <div className="hero-text">
+                    <h1 className="hero-title">toprakyavuz.com</h1>
+                    <p className="hero-subtitle">Siber güvenlik, network ve linux.</p>
+                </div>
+                <div className="hero-avatar-container">
+                    <img src="/avatar.png" alt="Toprak" className="hero-avatar" />
+                </div>
+            </div>
         </div>
     );
 }

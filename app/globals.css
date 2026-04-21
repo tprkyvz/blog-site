@@ -96,6 +96,26 @@ header {
     color: var(--primary);
 }
 
+.resumeLinkContainer {
+    text-align: center;
+    margin-top: -0.5rem;
+}
+
+.resumeTextLink {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.95rem;
+    color: var(--primary);
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+.resumeTextLink:hover {
+    color: var(--foreground);
+    text-shadow: 0 0 8px var(--primary);
+}
+
 /* Tags / Announcements */
 .announcements-container {
     display: flex;
@@ -373,5 +393,131 @@ article blockquote {
         display: flex;
         flex-direction: column;
         gap: 30px;
+    }
+}
+
+/* Vaxry Style Redesign */
+.top-nav {
+    width: 100%;
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.top-nav-links {
+    display: flex;
+    gap: 3rem;
+}
+
+.top-nav-link {
+    font-family: var(--font-mono), monospace;
+    color: #888;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+}
+
+.top-nav-link:hover {
+    color: var(--foreground);
+}
+
+.hero-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1; /* take up remaining space between header and footer */
+}
+
+.hero-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 800px;
+    max-width: 90vw;
+    background: transparent;
+    border: 1px solid rgba(255, 100, 50, 0.2);
+    border-radius: 20px;
+    padding: 4rem;
+    box-shadow: 0 0 30px rgba(255, 100, 50, 0.05), inset 0 0 20px rgba(255, 100, 50, 0.02);
+}
+
+.hero-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-title {
+    font-family: var(--font-mono), monospace;
+    font-size: 2.5rem;
+    color: var(--foreground);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-family: var(--font-mono), monospace;
+    font-size: 1rem;
+    color: #888;
+    margin-top: 0.5rem;
+}
+
+.hero-avatar-container {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+}
+
+.hero-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bottom-nav {
+    width: 100%;
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.bottom-nav-links {
+    display: flex;
+    gap: 5rem;
+}
+
+.bottom-nav-link {
+    font-family: var(--font-mono), monospace;
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+}
+
+.bottom-nav-link:hover {
+    color: var(--foreground);
+}
+
+.bottom-nav-icon {
+    font-size: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+    .hero-card {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 3rem;
+        padding: 2rem;
+    }
+    
+    .top-nav-links, .bottom-nav-links {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 }
